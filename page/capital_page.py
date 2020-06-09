@@ -154,3 +154,18 @@ class base_widget(Page):
     blance_prisoner_reg_submit = pel(id_='BankAccountWF_SubmitButton')
 
     # </editor-fold>
+
+    # <editor-fold desc="罪犯转监区管理">
+    prisoner_switch_area = pel(css='.btn-danger', describe='批量转监区')
+    prisoner_switch_area_upload = pel(css='.btn-warning', describe='模板文件上传')
+
+    prisoner_switch_area_upload_file = pel(id_='PrisonAreaTransferWF_FileUrl_UploadFileForm_SubmitButton')
+
+    prisoner_switch_area_upload_list = pels(css='#PrisonerSelect_ListTable tr')
+    prisoner_switch_area_cont = pel(id_='PrisonAreaTransferWF_Mark')
+    prisoner_switch_area_submit_result = pel(css='#ErrorResultSpan')
+    # </editor-fold>
+
+    # <editor-fold desc="转级管理>
+    prisoner_switch_level_upload_submit = pel(css='#TreatLevelTransferWF_FileUrl_UploadFileForm_SubmitButton')
+    # </editor-fold>

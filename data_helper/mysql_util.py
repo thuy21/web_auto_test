@@ -7,7 +7,7 @@ cursor = ""
 def conn(ip, user, password, data):
     global db_conn, cursor
     try:
-        db_conn = pymysql.connect(host=ip, user=user, passwd=password, db=data)
+        db_conn = pymysql.connect(host=ip, port=9306, user=user, passwd=password, db=data)
         cursor = db_conn.cursor()
     except:
         print("数据库连接失败！")
@@ -18,7 +18,7 @@ def query_one(cursor, sql):
     cursor.execute(sql)
     results = cursor.fetchone()
     for items in results:
-        return items[0]
+        return items
 
 
 def query_two(cursor, sql):

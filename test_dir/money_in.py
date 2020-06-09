@@ -1,10 +1,11 @@
 import sys, os
 from time import sleep
 from os.path import dirname, abspath
-
-sys.path.insert(0, dirname(dirname(abspath(__file__))))
 from public_module.tools import xls_update
 from public_module.tools import xlsx_read
+
+sys.path.insert(0, dirname(dirname(abspath(__file__))))
+
 
 
 def money_in(page, flag):

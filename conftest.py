@@ -45,10 +45,10 @@ def base_url():
 @pytest.fixture(scope='function')
 def config_data():
     config_list = ""
-    cursor1 = conn("192.168.1.14", "lecentMysql", "lecentMysql#1234", "nyzi")
-    if cursor1 != "":
-        config_list = query_two(cursor1, 'select `name`,v,info from sys_default_config')
-
+    # cursor1 = conn("116.63.68.108", "lecentMysql", "lecentMysql#1234", "gd_9081")
+    # if cursor1 != "":
+    #     config_list = query_two(cursor1, 'select `name`,v,info from sys_default_config')
+    # close()
     return config_list
 
 
