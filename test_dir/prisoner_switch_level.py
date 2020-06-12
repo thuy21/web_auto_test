@@ -28,27 +28,29 @@ def prisoner_switch_level(page):
     sleep(2)
     page.prisoner_switch_level_upload_submit.click()
     sleep(2)
-    # res = page.prisoner_switch_area_upload_list
-    # cursor1 = conn("116.63.68.108", "lecentMysql", "lecentMysql#1234", "gd_9081")
-    # bol = True
-    # index = 0
-    # for item in res:
-    #     if bol:
-    #         bol = False
-    #         continue
-    #     text = item.text.split(maxsplit=5)
-    #     config_list = query_one(cursor1, "select PrisonAreaName from prisoner where `Code`='{}'".format(list[index][1]))
-    #     # 断言监区是否正确
-    #     assert str(text[4]) == str(config_list)
-    #     index += 1
-    # close()
-    #
-    # page.prisoner_switch_area_cont.send_keys('转监区测试')
-    # page.driver.execute_script(js_ver)
-    # page.btn_next.click()
-    # sleep(1)
-    # page.btn_next.click()
-    # sleep(1)
-    # res = page.prisoner_switch_area_submit_result.text
-    #
-    # return res
+    res = page.prisoner_switch_area_upload_list
+    cursor1 = conn("116.63.68.108", "lecentMysql", "lecentMysql#1234", "gd_9081")
+    bol = True
+    index = 0
+    for item in res:
+        if bol:
+            bol = False
+            continue
+        text = item.text.split(maxsplit=6)
+        config_list = query_one(cursor1,
+                                "select t.`Name` from prisoner as p,treat_level as t where p.TreatLevelID = t.ID and "
+                                "p.`Code`='{}'".format(
+                                    list[index][1]))
+        # 断言监区是否正确
+        assert str(text[5]) == str(config_list)
+        index += 1
+    close()
+    page.prisoner_switch_level_cont.send_keys('转级测试')
+    page.driver.execute_script(js_ver)
+    page.btn_next.click()
+    sleep(1)
+    page.btn_next.click()
+    sleep(1)
+    res = page.prisoner_switch_area_submit_result.text
+
+    return res

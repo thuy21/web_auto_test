@@ -43,24 +43,21 @@ def prisoner_add(page):
     page.input_file_upload.send_keys(file_path + '/tmp_file/新学员导入模板.xls')
     sleep(1)
     page.base_prisoner_file_upload_submit.click()
-    sleep(1)
+    sleep(2)
+    result = page.base_prisoner_file_upload_result
+    for item in result:
+        assert "有误" not in item.text
+
     page.base_prisoner_add_submit.click()
     sleep(1)
-    res = ""
     try:
         page.driver.switch_to.default_content()
-        res = page.base_prisoner_add_submit_result.text
+        result = page.base_prisoner_add_submit_result.text
     except:
         page.driver.switch_to_frame(2)
-        res = page.win_error.text
+        result = page.win_error.text
 
-    page.driver.switch_to.default_content()
-    page.win_min_close.click()
-    sleep(1)
-    page.win_min_close.click()
-    sleep(1)
-    page.driver.find_element_by_link_text('基础信息管理').click()
-    return res
+    return result
 
 
 def tessqt_d_prisoner_status_query(page):

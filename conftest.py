@@ -45,10 +45,10 @@ def base_url():
 @pytest.fixture(scope='function')
 def config_data():
     config_list = ""
-    # cursor1 = conn("116.63.68.108", "lecentMysql", "lecentMysql#1234", "gd_9081")
-    # if cursor1 != "":
-    #     config_list = query_two(cursor1, 'select `name`,v,info from sys_default_config')
-    # close()
+    cursor1 = conn("116.63.68.108", "lecentMysql", "lecentMysql#1234", "gd_9081")
+    if cursor1 != "":
+        config_list = query_two(cursor1, 'select `name`,v,info from sys_default_config')
+    close()
     return config_list
 
 
@@ -131,7 +131,6 @@ def capture_screenshots(case_name):
     if new_report_dir is None:
         raise RuntimeError('没有初始化测试目录')
     image_dir = os.path.join(REPORT_DIR, new_report_dir, "image", file_name)
-    print('--------->> ' + image_dir)
     driver.save_screenshot(image_dir)
 
 

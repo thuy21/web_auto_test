@@ -10,9 +10,9 @@ class base_widget(Page):
     # </editor-fold>
 
     # <editor-fold desc="外围控件">
-    win_top_close = pel(css='.layui-layer-ico',timeout=1, describe='弹窗关闭按钮')
+    win_top_close = pel(css='.layui-layer-ico', timeout=1, describe='弹窗关闭按钮')
     system_logout = pel(css='.fa-sign-out', describe='【退出】注销')
-    win_min_close = pel(css='.active > .fa')
+    win_min_close = pel(css='.active > .fa', timeout=1)
 
     # </editor-fold>
 
@@ -86,6 +86,9 @@ class base_widget(Page):
     money_manage_leave_cont = pel(id_='PrisonerSettleWF_Mark')
     money_manage_leave_submit = pel(id_='PrisonerSettleWF_SubmitButton')
 
+    # 撤销出狱
+    money_manage_leave_cancel_submit = pel(css='.col-sm-offset-3 > .btn-danger')
+
     # </editor-fold>
 
     # <editor-fold desc="采购业务管理">
@@ -126,6 +129,24 @@ class base_widget(Page):
 
     sell_center_submit_result = pel(css='.layui-layer-content', timeout=30)
     sell_center_submit_result_confirm = pel(link_text='确定', timeout=480)
+
+    # 销售审核
+    sell_center_check_table_scroll = pel(css='.fixed-table-body', timeout=10)
+    sell_center_check_cont = pel(css='#GoodsOrder_AuditCF_CheckOpinion')
+    sell_center_check_submit = pel(css='.btn-info:nth-child(1)')
+    sell_center_check_submit_result = pel(css='.layui-layer-content')
+
+    # 销售退货
+    sell_return_prisoner = pel(css='#GoodsOrder_ReturnSF_Keyword')
+    sell_center_return = pel(css='tr:nth-child(1) .fa-reply')
+    sell_center_return_all = pel(css='.btn-success')
+    sell_center_return_cont = pel(css='#GoodsOrderBackForm_Mark')
+    sell_center_return_submit = pel(css='#GoodsOrderBackForm_SubmitButton')
+
+    # 退货信息查询
+    sell_return_query_prisoner = pel(css='#GoodsOrderBackSF_Keyword')
+    sell_return_list = pels(css='#GoodsOrderBack_ListTable tbody tr:not(:last-child)')
+
     # </editor-fold>
 
     # <editor-fold desc="基础信息管理">
@@ -140,8 +161,9 @@ class base_widget(Page):
 
     # 添加罪犯
     base_prisoner_file_upload_submit = pel(id_='PrisonerImportForm_FileUrl_UploadFileForm_SubmitButton')
+    base_prisoner_file_upload_result = pels(css='#PrisonerImportForm_Prisoner_ListTable tr', timeout=5)
     base_prisoner_add_submit = pel(id_='PrisonerImportForm_SubmitButton')
-    base_prisoner_add_submit_result = pel(class_name='layui-layer-content', timeout=3)
+    base_prisoner_add_submit_result = pel(class_name='layui-layer-content', timeout=2)
     base_prisoner_add_submit_result_confirm = pel(link_text='确定')
 
     base_prisoner_account_status = pel(css='tr:nth-child(1) > td:nth-child(14) > font:nth-child(1)', timeout=20)
@@ -168,4 +190,5 @@ class base_widget(Page):
 
     # <editor-fold desc="转级管理>
     prisoner_switch_level_upload_submit = pel(css='#TreatLevelTransferWF_FileUrl_UploadFileForm_SubmitButton')
+    prisoner_switch_level_cont = pel(css='#TreatLevelTransferWF_Mark')
     # </editor-fold>
